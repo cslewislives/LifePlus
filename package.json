@@ -1,0 +1,26 @@
+{
+  "name": "lifeplus",
+  "version": "1.0.0",
+  "description": "See if the grass is greener on the other side",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cslewislives/LifePlus.git"
+  },
+  "author": "Josh C.S. Lewis, Kristin Ahonen, Jeff Cameron",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cslewislives/LifePlus/issues"
+  },
+  "homepage": "https://github.com/cslewislives/LifePlus#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "express-handlebars": "^3.0.0",
+    "mysql2": "^1.5.2",
+    "sequelize": "^4.36.1"
+  }
+}
