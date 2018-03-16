@@ -1,7 +1,11 @@
 {
   "development": {
-    "use_env_variable": "MYSQLDB_URL",
-    "dialect": "mysql"
+    "username": "root",
+    "password": "root",
+    "database": "database_development",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "port": "3308"
   },
   "test": {
     "username": "root",
