@@ -5,8 +5,22 @@ const path = require('path');
 var login = require('../../models/userSignup');
 
 
-router.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, "../../views/login-page.html"));
-})
+router.get("/", function(req, res) {
+    res.render("index");
+  });
+
+router.post('/api/users', (req, res) => {
+    let email = req.body.email;
+    let password = req.body.password;
+    let name = req.body.name;
+
+    login.signUp(email, password, name);
+    res.end();
+});
+
+router.get('/:jobTitle', (req, res) => {
+    let job = req.params.jobTitle;
+    
+});
 
 module.exports = router;
