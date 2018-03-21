@@ -4,28 +4,23 @@ const path = require('path');
 
 var login = require('../../models/userSignup');
 
-
-// router.get('/', (req, res) => {
-//     res.sendFile(path.join(__dirname, "../../views/login-page.html"));
-// });
-
-
-const exphbs = require('express-handlebars');
-
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
-
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'handlebars');
-
-app.listen(PORT, () => {
-    console.log('App listening on PORT ' + PORT);
-});
-
-app.get("/", function(req, res) {
+router.get("/", function(req, res) {
     res.render("index");
   });
 
+router.post('/api/users', (req, res) => {
+    let email = req.body.email;
+    let password = req.body.password;
+    let name = req.body.name;
 
+    login.signUp(email, password, name);
+    res.end();
+});
+
+router.get('/:jobTitle', (req, res) => {
+    let job = req.params.jobTitle;
+    
+});
 
 
 module.exports = router;
