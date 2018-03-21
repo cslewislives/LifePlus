@@ -33,6 +33,9 @@ app.engine('handlebars', exphbs({
 }));
 
 
+const exphbs = require('express-handlebars');
+
+
 app.listen(PORT, () => {
     console.log('App listening on PORT ' + PORT);
 });
