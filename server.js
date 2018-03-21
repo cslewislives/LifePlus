@@ -17,8 +17,8 @@ app.use(bodyParser.json());
 app.use(express.static("app/public"));
 
 
-// const routes = require('./app/controllers/routes/api-routes');
-// app.use(routes);
+const routes = require('./app/controllers/routes/api-routes');
+app.use(routes);
 
 
 const exphbs = require('express-handlebars');
@@ -33,16 +33,11 @@ app.engine('handlebars', exphbs({
 }));
 
 
-// app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
-
+const exphbs = require('express-handlebars');
 
 
 app.listen(PORT, () => {
     console.log('App listening on PORT ' + PORT);
 });
-
-app.get("/", function(req, res) {
-    res.render("index");
-  });
 
 
