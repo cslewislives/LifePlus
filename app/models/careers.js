@@ -28,7 +28,7 @@ var location = "denver,co";
 
  //  --Job Search -- //
 // Take job title and convert to onetCode
-function careerRequest(){
+function careerRequest(jobTitle){
 
 
     //sets up request for converting job key word to Onetcode
