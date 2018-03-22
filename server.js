@@ -40,4 +40,11 @@ app.listen(PORT, () => {
     console.log('App listening on PORT ' + PORT);
 });
 
+  app.get("/search", function(req, res) {
+    res.sendFile(path.join(__dirname, "app/views/search.html"));
+  });
+
+  app.get("/user", function(req, res) {
+    res.sendFile(path.join(__dirname, "app/views/userinfo.html"));
+  });
 
