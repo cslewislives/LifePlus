@@ -33,7 +33,7 @@ var login = {
 
       if (user) {
         //greet the user
-        alert("Hey " + name + "Welcome to Life Plus!")
+        // alert("Hey " + name + "Welcome to Life Plus!")
 
         console.log(user.uid);
 
