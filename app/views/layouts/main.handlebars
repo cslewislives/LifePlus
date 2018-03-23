@@ -11,29 +11,30 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Bootstrap core CSS -->
-    <link href="assets/css/mdbootstrap_css/bootstrap.css" rel="stylesheet"  type="text/css" >
+    <link href="assets/css/mdbootstrap_css/bootstrap.css" rel="stylesheet" type="text/css">
     <!-- Material Design Bootstrap -->
-    <link rel="stylesheet"  href="assets/css/mdbootstrap_css/mdb.css" type="text/css" >
+    <link rel="stylesheet" href="assets/css/mdbootstrap_css/mdb.css" type="text/css">
 
     <style>
-       .intro-2 {
+        .intro-2 {
             background: url("https://wallpaperlayer.com/img/2015/7/clouds-vector-wallpaper-4168-4392-hd-wallpapers.jpg")no-repeat center center;
             background-size: cover;
         }
-        .tab-content{
+
+        .tab-content {
             background-color: #fff;
         }
 
-        .searchrow{
+        .searchrow {
             margin-top: 150px;
         }
 
-        .inforow{
+        .inforow {
             margin-top: 50px;
             margin-bottom: 800px;
         }
 
-        .cards{
+        .cards {
             padding: 30px;
             text-align: center;
         }
@@ -107,14 +108,15 @@
         }
     </style>
 
+
 </head>
 
 
 <body>
-{{{body}}}
+    {{{body}}}
 
     <!--Main Navigation-->
-   
+
     <!--Main Navigation-->
 
 
@@ -124,13 +126,27 @@
     <!-- Bootstrap tooltips -->
     <script type="text/javascript" src="assets/js/mdbootstrap/popper.min.js"></script>
     <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="assets/js/mdbootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/js/mdbootstrap/bootstrap.min.js"></script> {{!-- for auto complete --}}
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDHJqlNREO1QpaDF_ZwGt6M2CedgpZ4L7I&libraries=places&callback=init"
+        async defer></script>
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="assets/js/mdbootstrap/mdb.min.js"></script>
     <script type="text/javascript" src="main.js"></script>
 
-   <script>
+
+
+    <script>
         new WOW().init();
+
+        function init() {
+            var options = {
+                types: ['(cities)'],
+                componentRestrictions: { country: "us" }
+            };
+            var input = document.getElementById('orangeForm-city');
+            var autocomplete = new google.maps.places.Autocomplete(input, options);
+        }
     </script>
 </body>
+
 </html>

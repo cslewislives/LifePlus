@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 1313;
 
 firebase.initializeApp(config);
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static("app/public"));
 
