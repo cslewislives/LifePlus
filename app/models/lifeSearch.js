@@ -3,6 +3,8 @@ const keys = require("../config/keys.js");
 
 const careerKey = keys.careers.career_token;
 
+
+
 var search = {
     careerRequest: function (jobTitle, location) {
         var options = {
@@ -51,8 +53,8 @@ var search = {
     costs: function(location) {
         var options = {
             url : "https://www.numbeo.com/api/city_prices?api_key=ybyk9z0ag9439o&query=" + location
-            };  
-        
+            };
+
         request(options, function(error, response, body) {
             if (error){
                 console.log("Cost of living API is Broken");
@@ -71,5 +73,7 @@ var search = {
         });
     }
 };
+
+
 
 module.exports = search;

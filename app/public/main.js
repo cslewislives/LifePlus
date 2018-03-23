@@ -1,11 +1,11 @@
-$(document).ready(function() { 
-    
+$(document).ready(function() {
+
     console.log("hello");
 
     $("#signUp").click(
     function() {
         event.preventDefault();
-        console.log("clicked");
+        console.log("sign up clicked");
         let user = {
             email: $('#orangeForm-email').val().trim(),
             password: $('#orangeForm-pass').val().trim(),
@@ -13,10 +13,27 @@ $(document).ready(function() {
         }
         console.log(user);
 
-        $.post('/api/users', user).then(function() {
+        $.post('/api/signUpUser', user).then(function() {
             console.log(user.name + ' Added');
         });
     });
+
+    $("#signIn").click(function () {
+
+      event.preventDefault();
+      console.log("sign in clicked");
+      let user = {
+          email: $('#orangeForm-email').val().trim(),
+          password: $('#orangeForm-pass').val().trim()
+
+      }
+      console.log(user);
+
+      $.post('/api/signInUser', user).then(function() {
+          console.log(user.email + 'sent to login');
+      });
+
+    })
 
     $('#searchButton').click(function() {
         event.preventDefault();
@@ -30,7 +47,33 @@ $(document).ready(function() {
         $.post('/api/searches', newLife).then(function() {
             console.log(newLife.job + ' added');
         })
-    })
+    });
+
+
+    $('#saveBtn').click(function(){
+      console.log("clicked");
+          let jobName = $("#jobName").text();
+          let salary = $("#salary").text();
+          let cityName = $("#cityName").text();
+          let rent = $("#rent").text();
+
+
+          let savedSearch = {
+                job: jobName,
+                location: cityName,
+                salary: salary,
+                rent: rent
+
+            }
+
+            console.log(savedSearch);
+            $.post('/api/savedSearches', savedSearch);
+
+
+
+
+    });
+
 
 
 });

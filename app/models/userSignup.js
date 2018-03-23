@@ -61,6 +61,22 @@ var login = {
       // ...
     });
 
+    firebase.auth().onAuthStateChanged(function (user) {
+
+      if (user) {
+        //greet the user
+        // alert("Hey " + name + "Welcome to Life Plus!")
+
+        console.log(user.uid + "is logged in");
+       
+        //add user id, username, email to database
+
+        // User is signed in.
+      } else {
+        console.log("Login Unsuccessfull")
+      }
+    });
+
   },
 
   sendToSearch: function () {
