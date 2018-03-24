@@ -1,82 +1,83 @@
- <!--Main Navigation-->
-    <header>
+<!--Main Navigation-->
+<header>
 
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
-            <div class="container">
-                <a class="navbar-brand" href="/search">
-                     <img src="assets/css/images/logo.png" height="40" class="d-inline-block align-top" alt="">
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-7" aria-controls="navbarSupportedContent-7"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent-7">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/search">Life Search</a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" >My Account
-                                <span class="sr-only">(current)</span>
-                            </a>
-                        </li>
-                    </ul>
-                   <ul class="navbar-nav">
-                <li class="nav-item">
-                   <a class="nav-link" href="/">Logout</a>
-                </li>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="/search">
+                <img src="assets/css/images/logo.png" height="40" class="d-inline-block align-top" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-7" aria-controls="navbarSupportedContent-7"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent-7">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/search">Life Search</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link">My Account
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
                 </ul>
-                </div>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Logout</a>
+                    </li>
+                </ul>
             </div>
-        </nav>
-        <div class="view jarallax" data-jarallax='{"speed": 0.2}'>
-            <section class="view intro-2">
-                <div class="full-bg-img">
-                    <div class="mask rgba-stylish-light flex-center">
-                        <div class="container flex-center">
-                            <div class="row pt-5 mt-3">
-                                <div class="col-md-12 mb-3">
-                                    <div class="intro-info-content text-center">
-                                        <h1 class="display-3 white-text mb-5 wow fadeInDown" data-wow-delay="0.3s"><strong>MY</strong>
-                                            <a class="white-text font-weight-bold"><strong>LIFE ++</strong></a>
-                                        </h1>
-                                    </div>
+        </div>
+    </nav>
+    <div class="view jarallax" data-jarallax='{"speed": 0.2}'>
+        <section class="view intro-2">
+            <div class="full-bg-img">
+                <div class="mask rgba-stylish-light flex-center">
+                    <div class="container flex-center">
+                        <div class="row pt-5 mt-3">
+                            <div class="col-md-12 mb-3">
+                                <div class="intro-info-content text-center">
+                                    <h1 class="display-3 white-text mb-5 wow fadeInDown" data-wow-delay="0.3s">
+                                        <strong>MY</strong>
+                                        <a class="white-text font-weight-bold">
+                                            <strong>LIFE ++</strong>
+                                        </a>
+                                    </h1>
                                 </div>
                             </div>
                         </div>
                     </div>
-            </section>
-            </div>
-        </div>
-    </header>
-    <!--Main Navigation-->
-
-    <!--Main Layout-->
-    <main>
-
-        <div class="container">
-
-
-
-            <!--Section: Tabs-->
-            <section>
-
-                <!-- Tab panels -->
-                <div class="tab-content">
-
-                    {{#each savedSearch}}
-                    {{> savedsearches}}
-                    {{/each}}
-
-                    
-
                 </div>
-
-            </section>
-            <!--Section: Tabs-->
-
+        </section>
         </div>
+    </div>
+</header>
+<!--Main Navigation-->
+
+<!--Main Layout-->
+<main>
+
+    <div class="container">
 
 
-    </main>
-    <!--Main Navigation-->
+
+        <!--Section: Tabs-->
+        <section>
+
+            <!-- Tab panels -->
+            <div class="tab-content">
+
+                {{#each savedSearch}} {{> savedsearches}} {{/each}}
+
+
+
+            </div>
+
+        </section>
+        <!--Section: Tabs-->
+
+    </div>
+
+
+</main>
+<!--Main Navigation-->

@@ -67,6 +67,7 @@ $(document).ready(function() {
             }
 
             console.log(savedSearch);
+            toastr["success"]("Search Saved!");
             $.post('/api/savedSearches', savedSearch);
 
 
