@@ -2,14 +2,14 @@ $(document).ready(function() {
 
     console.log("hello");
 
-    $("#signUp").click(
+    $("#signUpBtn").click(
     function() {
         event.preventDefault();
         console.log("sign up clicked");
         let user = {
-            email: $('#orangeForm-email').val().trim(),
-            password: $('#orangeForm-pass').val().trim(),
-            name: $('#orangeForm-name').val().trim()
+            email: $('#emailsu').val().trim(),
+            password: $('#passwordsu').val().trim(),
+            name: $('#namesu').val().trim()
         }
         console.log(user);
 
@@ -18,22 +18,23 @@ $(document).ready(function() {
         });
     });
 
-    $("#signIn").click(function () {
+    $("#signInBtn").click(function () {
 
       event.preventDefault();
       console.log("sign in clicked");
       let user = {
-          email: $('#orangeForm-email').val().trim(),
-          password: $('#orangeForm-pass').val().trim()
+          email: $('#emailsi').val().trim(),
+          password: $('#passwordsi').val().trim()
 
       }
       console.log(user);
 
-      $.post('/api/signInUser', user).then(function() {
+      $.post('/api/signInUser', user).then(function(data) {
           console.log(user.email + 'sent to login');
+          console.log(data);
       });
 
-    })
+    });
 
     $('#searchButton').click(function() {
         event.preventDefault();
