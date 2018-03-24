@@ -26,8 +26,8 @@ app.set('view engine', 'handlebars');
 app.set("views", 'app/views');
 
 app.engine('handlebars', exphbs({
-    extname:'handlebars', 
-    defaultLayout:'main.handlebars', 
+    extname:'handlebars',
+    defaultLayout:'main.handlebars',
     layoutsDir: 'app/views/layouts'
 }));
 
@@ -35,4 +35,3 @@ app.engine('handlebars', exphbs({
 app.listen(PORT, () => {
     console.log('App listening on PORT ' + PORT);
 });
-
