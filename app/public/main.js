@@ -1,4 +1,4 @@
-$(document).ready(function () {      
+$(document).ready(function () {
 
     Number.prototype.formatMoney = function (c, d, t) {
         var n = this,
@@ -16,7 +16,7 @@ $(document).ready(function () {
     $("#signUp").click(
         function () {
             event.preventDefault();
-            console.log("clicked");
+            console.log("sign up clicked");
             let user = {
                 email: $('#orangeForm-email').val().trim(),
                 password: $('#orangeForm-pass').val().trim(),
@@ -24,11 +24,28 @@ $(document).ready(function () {
             }
             console.log(user);
 
-            $.post('/api/users', user).then(function () {
+            $.post('/api/signUpUser', user).then(function () {
                 console.log(user.name + ' Added');
-                window.location = '/search';
             });
         });
+
+
+    $("#signIn").click(function () {
+
+        event.preventDefault();
+        console.log("sign in clicked");
+        let user = {
+            email: $('#orangeForm-email').val().trim(),
+            password: $('#orangeForm-pass').val().trim()
+
+        }
+        console.log(user);
+
+        $.post('/api/signInUser', user).then(function () {
+            console.log(user.email + 'sent to login');
+        });
+
+    })
 
     $('#searchButton').click(function () {
         event.preventDefault();
@@ -40,27 +57,51 @@ $(document).ready(function () {
             location: location
         }
         console.log(newLife);
-        jobSearch = newLife.job.replace(/\s+/g, "").toLowerCase();
-        $.post('/search/' + jobSearch, newLife)
-            .then(function (data1, data2) {
-                console.log(data1);
-                console.log(data2);
-                let salary = parseFloat(data1.average);
-                let rent = parseFloat(data2)
-                $('#job-title').text(capitalizeFirstLetter(newLife.job));
-                $('#location').text(newLife.location);
-                $('#salary').text(salary.formatMoney(0));
-                $('#rent').text(rent.formatMoney(0));
-                console.log(newLife.job + ' added');
-            }).fail(function (err) {
-                console.log('you fail');
-                console.log(err);
-            });
+        post('/search/job', '/search/city', newLife);
+    });
+
+    $('#saveBtn').click(function () {
+        console.log("clicked");
+        let jobName = $("#jobName").text();
+        let salary = $("#salary").text();
+        let cityName = $("#cityName").text();
+        let rent = $("#rent").text();
+
+
+        let savedSearch = {
+            job: jobName,
+            location: cityName,
+            salary: salary,
+            rent: rent
+
+        }
+
+        console.log(savedSearch);
+        $.post('/api/savedSearches', savedSearch);
+
     });
 
     function capitalizeFirstLetter(string) {
-
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
+    function post(url1, url2, data) {
+        let post1 = $.post(url1, data);
+        let post2 = $.post(url2, data);
+
+        $.when(post1, post2).done(function (res1, res2) {
+            console.log(res1);
+            console.log(res2);
+            let salary = parseFloat(res1[0].average);
+            let rent = parseFloat(res2[0].average_price);
+            $('#job-title').text(capitalizeFirstLetter(data.job));
+            $('#location').text(data.location);
+            $('#salary').text(salary.formatMoney(0));
+            $('#rent').text(rent.formatMoney(0));
+            console.log(data.job + ' added');
+        }).fail(function (err) {
+            console.log('you fail');
+            console.log(err);
+        });
+    }
 });

@@ -3,6 +3,8 @@ const keys = require("../config/keys.js");
 
 const careerKey = keys.careers.career_token;
 
+
+
 var search = {
     careerRequest: function (jobTitle, location, cb) {
         var options = {
@@ -11,6 +13,7 @@ var search = {
                 'Authorization': 'Bearer ' + careerKey
             }
         };
+        
         console.log('here4', options.url)
         request(options, function (error, response, body) {
             console.log('body', body)
@@ -44,6 +47,7 @@ var search = {
             // If the request is successful
             else if (!error && response.statusCode === 200) {
                 var result = JSON.parse(body);
+                console.log(result);
                 console.log("Average Pay: $" + result.LMI.AveragePayState);
                 cb(result);
             }
@@ -52,8 +56,8 @@ var search = {
     costs: function(location, cb) {
         var options = {
             url : "https://www.numbeo.com/api/city_prices?api_key=ybyk9z0ag9439o&query=" + location
-            };  
-        
+            };
+
         request(options, function(error, response, body) {
             if (error){
                 console.log("Cost of living API is Broken");
@@ -61,6 +65,7 @@ var search = {
           // If the request is successful
             else if (!error && response.statusCode === 200) {
                 var result = JSON.parse(body);
+                console.log(result);
                 // console.log(JSON.stringify(result,null,2));
                 result.prices.forEach(element => {
                     if (element.item_name === "Apartment (1 bedroom) in City Centre, Rent Per Month"){
@@ -73,5 +78,7 @@ var search = {
         });
     }
 };
+
+
 
 module.exports = search;
