@@ -1,79 +1,88 @@
- <header>
+<header>
 
- <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
         <div class="container">
             <a class="navbar-brand">
-                <strong>Life ++</strong>
+                <img src="assets/css/images/logo.png" height="40" class="d-inline-block align-top" alt="">
             </a>
-            {{!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-7" aria-controls="navbarSupportedContent-7"
-                aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent-7">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/search">Life Search
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link">My Account</a>
-                    </li>
-                </ul>
-            </div> --}}
+
         </div>
     </nav>
 
-        <!--Intro Section-->
-
-     <section class="view intro-2">
-            <div class="full-bg-img">
-              <div class="mask rgba-stylish-light flex-center">
+    <section class="view intro-2">
+        <div class="full-bg-img">
+            <div class="mask rgba-stylish-light flex-center">
                 <div class="container">
                     <div class="row">
                         <div class="col-xl-5 col-lg-6 col-md-10 col-sm-12 mx-auto mt-lg-5">
-
                             <!--Form with header-->
                             <div class="card wow fadeIn" data-wow-delay="0.3s">
                                 <form class="card-body">
+                                    <ul class="nav nav-tabs nav-justified">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" data-toggle="tab" href="#signIn" role="tab">Log In</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-toggle="tab" href="#signUp" role="tab">Sign Up</a>
+                                        </li>
 
-                                    <!--Header-->
-                                    <div class="form-header unique-color-dark">
-                                        <h3><i class="fa fa-user mt-2 mb-2"></i> Log in:</h3>
-                                    </div>
+                                    </ul>
+                                    <!-- Tab panels -->
+                                    <div class="tab-content card">
+                                        <!--Panel 1-->
+                                        <div class="tab-pane fade in show active" id="signIn" role="tabpanel">
 
-                                    <!--Body-->
-                                    <div class="md-form d-none">
-                                        <i class="fa fa-user prefix white-text"></i>
-                                        <input type="text" id="orangeForm-name" class="form-control">
-                                        <label for="orangeForm-name">Your name</label>
-                                    </div>
-                                    <div class="md-form">
-                                        <i class="fa fa-envelope prefix white-text"></i>
-                                        <input type="text" id="orangeForm-email" class="form-control">
-                                        <label for="orangeForm-email">Your email</label>
-                                    </div>
+                                            <div class="md-form">
+                                                <i class="fa fa-envelope fa-2x prefix"></i>
+                                                <input type="email" id="emailsi" class="form-control validate">
+                                                <label for="emailsi" data-error="wrong" data-success="right">Email</label>
+                                            </div>
+                                            <br>
+                                            <div class="md-form">
+                                                <i class="fa fa-lock fa-2x prefix"></i>
+                                                <input type="password" id="passwordsi" class="form-control validate">
+                                                <label for="passwordsi" data-error="wrong" data-success="right">Password</label>
+                                            </div>
+                                            <div class="text-center">
+                                                <button class="btn unique-color-dark btn-lg" id="signIn">Log In</button>
+                                            </div>
+                                        </div>
+                                        <!--/.Panel 1-->
+                                        <!--Panel 2-->
+                                        <div class="tab-pane fade" id="signUp" role="tabpanel">
 
-                                    <div class="md-form">
-                                        <i class="fa fa-lock prefix white-text"></i>
-                                        <input type="password" id="orangeForm-pass" class="form-control">
-                                        <label for="orangeForm-pass">Your password</label>
-                                    </div>
+                                            <div class="md-form">
+                                                <i class="fa fa-user fa-2x prefix"></i>
+                                                <input type="text" id="namesu" class="form-control validate">
+                                                 <label for="namesu" data-error="wrong" data-success="right">First and Last Name</label>
+                                            </div>
+                                            <br>
+                                            <div class="md-form">
+                                                <i class="fa fa-envelope fa-2x prefix"></i>
+                                                <input type="email" id="emailsu" class="form-control validate">
+                                                <label for="emailsu" data-error="wrong" data-success="right">Email</label>
+                                            </div>
+                                            <br>
+                                            <div class="md-form">
+                                                <i class="fa fa-lock fa-2x prefix"></i>
+                                                <input type="password" id="passwordsu" class="form-control validate">
+                                                <label for="passwordsu" data-error="wrong" data-success="right">Password</label>
+                                            </div>
 
-                                    <div class="text-center">
-                                        <button class="btn unique-color-dark btn-lg" 
-                                        id="signIn">Sign In</button>
-                                        <button class="btn default-color-dark btn-lg"  id="signUp">Sign Up </button>
-                                        
-                                    </div>
+                                            <div class="text-center">
+                                                <button class="btn unique-color-dark btn-lg" id="signUp">Sign Up </button>
 
+                                            </div>
+                                        </div>
+                                        <!--/.Panel 2-->
+
+                                    </div>
                                 </form>
                             </div>
-                            <!--/Form with header-->
-
                         </div>
                     </div>
                 </div>
-              </div>
             </div>
-        </section>
-        </header>
+        </div>
+    </section>
+</header>

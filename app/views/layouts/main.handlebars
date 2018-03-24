@@ -16,13 +16,21 @@
     <link rel="stylesheet" href="assets/css/mdbootstrap_css/mdb.css" type="text/css">
 
     <style>
-        .intro-2 {
-            background: url("https://wallpaperlayer.com/img/2015/7/clouds-vector-wallpaper-4168-4392-hd-wallpapers.jpg")no-repeat center center;
+        .full-bg-img {
+            background: url("assets/css/images/background-01.png")no-repeat center center;
             background-size: cover;
         }
 
         .tab-content {
             background-color: #fff;
+        }
+
+        .navbar {
+            background-color: rgb(113, 113, 113);
+        }
+
+        .top-nav-collapse {
+            background-color: rgb(113, 113, 113);
         }
 
         .searchrow {
@@ -40,7 +48,7 @@
         }
 
         .navbar:not(.top-nav-collapse) {
-            background: transparent !important;
+           background-color: rgb(113, 113, 113, .6);
         }
 
         .visible {
@@ -53,16 +61,16 @@
 
         @media (max-width: 768px) {
             .navbar:not(.top-nav-collapse) {
-                background: #3f51b5 !important;
+                background: rgb(113, 113, 113, .6) !important;
             }
         }
 
         .card {
-            background-color: rgba(229, 228, 255, 0.2);
+            background-color: rgb(250, 250, 250);
         }
 
         .md-form label {
-            color: #ffffff;
+            color: #575555;
         }
 
         h6 {
@@ -93,18 +101,20 @@
         }
 
         .md-form input[type=text]:focus:not([readonly]),
+        .md-form input[type=email]:focus:not([readonly]),
         .md-form input[type=password]:focus:not([readonly]) {
-            border-bottom: 1px solid #8EDEF8;
-            box-shadow: 0 1px 0 0 #8EDEF8;
+            border-bottom: 1px solid teal;
+            box-shadow: 0 1px 0 0 teal;
         }
 
         .md-form input[type=text]:focus:not([readonly])+label,
+        .md-form input[type=email]:focus:not([readonly])+label,
         .md-form input[type=password]:focus:not([readonly])+label {
-            color: #8EDEF8;
+            color: teal;
         }
 
         .md-form .form-control {
-            color: #fff;
+            color: rgb(63, 63, 63);
         }
     </style>
 
@@ -132,8 +142,6 @@
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="assets/js/mdbootstrap/mdb.min.js"></script>
     <script type="text/javascript" src="main.js"></script>
-
-
 
     <script>
         new WOW().init();
