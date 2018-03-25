@@ -50,7 +50,7 @@ var login = {
 
   },
 
-  signIn: function (email, password) {
+  signIn: function (email, password, cb) {
 
     //Takes Name and Email from DOM
     firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
@@ -68,7 +68,7 @@ var login = {
         // alert("Hey " + name + "Welcome to Life Plus!")
 
         console.log(user.uid + "is logged in");
-       
+       cb(user)
         //add user id, username, email to database
 
         // User is signed in.

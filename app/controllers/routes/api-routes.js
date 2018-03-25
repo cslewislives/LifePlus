@@ -27,8 +27,10 @@ router.post('/api/signInUser', (req, res) => {
     let password = req.body.password;
     let name = req.body.name;
 
-    login.signIn(email, password);
-    res.redirect('/search');
+    login.signIn(email, password, function(user){
+        res.render('search', user)
+    });
+    //res.redirect('/search');
 
 });
 
