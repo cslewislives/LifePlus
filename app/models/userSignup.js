@@ -59,25 +59,36 @@ var login = {
       var errorMessage = error.message;
       console.log(errorMessage);
       // ...
+    }).then(function(){
+      firebase.auth().onAuthStateChanged(function (user) {
+
+        if (user) {
+          //greet the user
+          // alert("Hey " + name + "Welcome to Life Plus!")
+
+          console.log(user.uid + "is logged in");
+
+          //add user id, username, email to database
+          var uid = user.uid;
+
+          return uid;
+          // User is signed in.
+        } else {
+          console.log("Login Unsuccessfull")
+        }
+      });
+
     });
 
-    firebase.auth().onAuthStateChanged(function (user) {
+    console.log(user);
+    console.log(uid);
 
-      if (user) {
-        //greet the user
-        // alert("Hey " + name + "Welcome to Life Plus!")
-
-        console.log(user.uid + "is logged in");
-       
-        //add user id, username, email to database
-
-        // User is signed in.
-      } else {
-        console.log("Login Unsuccessfull")
-      }
-    });
 
   },
+
+
+
+
 
   sendToSearch: function () {
 

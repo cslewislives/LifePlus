@@ -13,6 +13,7 @@ $(document).ready(function () {
 
     console.log("hello");
 
+<<<<<<< HEAD
     $("#signUp").click(
         function () {
             event.preventDefault();
@@ -23,6 +24,18 @@ $(document).ready(function () {
                 name: $('#orangeForm-name').val().trim()
             }
             console.log(user);
+=======
+    $("#signUpBtn").click(
+    function() {
+        event.preventDefault();
+        console.log("sign up clicked");
+        let user = {
+            email: $('#emailsu').val().trim(),
+            password: $('#passwordsu').val().trim(),
+            name: $('#namesu').val().trim()
+        }
+        console.log(user);
+>>>>>>> eea0a3b5732f1b76f50932ea2eb7e55260f3d055
 
             $.post('/api/signUpUser', user).then(function () {
                 console.log(user.name + ' Added');
@@ -30,22 +43,37 @@ $(document).ready(function () {
         });
 
 
-    $("#signIn").click(function () {
+    $("#signInBtn").click(function () {
 
+<<<<<<< HEAD
         event.preventDefault();
         console.log("sign in clicked");
         let user = {
             email: $('#orangeForm-email').val().trim(),
             password: $('#orangeForm-pass').val().trim()
+=======
+      event.preventDefault();
+      console.log("sign in clicked");
+      let user = {
+          email: $('#emailsi').val().trim(),
+          password: $('#passwordsi').val().trim()
+>>>>>>> eea0a3b5732f1b76f50932ea2eb7e55260f3d055
 
         }
         console.log(user);
 
+<<<<<<< HEAD
         $.post('/api/signInUser', user).then(function () {
             console.log(user.email + 'sent to login');
         });
+=======
+      $.post('/api/signInUser', user).then(function(data) {
+          console.log(user.email + 'sent to login');
+          console.log(data);
+      });
+>>>>>>> eea0a3b5732f1b76f50932ea2eb7e55260f3d055
 
-    })
+    });
 
     $('#searchButton').click(function () {
         event.preventDefault();
@@ -67,6 +95,28 @@ $(document).ready(function () {
         let cityName = $("#cityName").text();
         let rent = $("#rent").text();
 
+<<<<<<< HEAD
+=======
+    $('#saveBtn').click(function(){
+      console.log("clicked");
+          let jobName = $("#jobName").text();
+          let salary = $("#salary").text();
+          let cityName = $("#cityName").text();
+          let rent = $("#rent").text();
+
+
+          let savedSearch = {
+                job: jobName,
+                location: cityName,
+                salary: salary,
+                rent: rent
+
+            }
+
+            console.log(savedSearch);
+            toastr["success"]("Search Saved!");
+            $.post('/api/savedSearches', savedSearch);
+>>>>>>> eea0a3b5732f1b76f50932ea2eb7e55260f3d055
 
         let savedSearch = {
             job: jobName,

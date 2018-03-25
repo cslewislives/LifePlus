@@ -29,7 +29,7 @@ router.post('/api/signInUser', (req, res) => {
     let name = req.body.name;
 
     login.signIn(email, password);
-    res.redirect('/search');
+
 
 });
 
