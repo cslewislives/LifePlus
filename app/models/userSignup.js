@@ -67,7 +67,7 @@ var login = {
           // alert("Hey " + name + "Welcome to Life Plus!")
 
           console.log(user.uid + "is logged in");
-
+  
           //add user id, username, email to database
           var uid = user.uid;
 
