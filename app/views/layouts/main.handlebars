@@ -115,6 +115,7 @@
         }
     </style>
 
+
 </head>
 
 
@@ -132,13 +133,24 @@
     <!-- Bootstrap tooltips -->
     <script type="text/javascript" src="assets/js/mdbootstrap/popper.min.js"></script>
     <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="assets/js/mdbootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/js/mdbootstrap/bootstrap.min.js"></script> {{!-- for auto complete --}}
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDHJqlNREO1QpaDF_ZwGt6M2CedgpZ4L7I&libraries=places&callback=initialize"
+        async defer></script>
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="assets/js/mdbootstrap/mdb.min.js"></script>
     <script type="text/javascript" src="main.js"></script>
 
     <script>
         new WOW().init();
+
+        function initialize() {
+            var options = {
+                types: ['(cities)'],
+                componentRestrictions: { country: "us" }
+            };
+            var input = document.getElementById('orangeForm-city');
+            var autocomplete = new google.maps.places.Autocomplete(input, options);
+        }
     </script>
 </body>
 
