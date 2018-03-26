@@ -1,5 +1,10 @@
 $(document).ready(function () {
 
+var currentUsr = function(id, username, email, savedSearches){
+
+}
+
+
     Number.prototype.formatMoney = function (c, d, t) {
         var n = this,
             c = isNaN(c = Math.abs(c)) ? 2 : c,
@@ -23,29 +28,41 @@ $(document).ready(function () {
         }
         console.log(user);
 
-        $.post('/api/signUpUser', user).then(function () {
+        $.post('/api/signUpUser', user).done(function(data) {
             console.log(user.name + ' Added');
+            console.log("User Id: " + data.user);
+            getUserInfo(data.user);
         });
     });
+
 
 
     $("#signInBtn").click(function () {
+            event.preventDefault();
+            console.log("sign in clicked");
+            let user = {
+                email: $('#emailsi').val().trim(),
+                password: $('#passwordsi').val().trim()
+                }
 
-        event.preventDefault();
-        console.log("sign in clicked");
-        let user = {
-            email: $('#emailsi').val().trim(),
-            password: $('#passwordsi').val().trim()
-
-        }
-        console.log(user);
-
-        $.post('/api/signInUser', user).then(function (data) {
-            console.log(user.email + 'sent to login');
-            console.log(data);
+            $.post('/api/signInUser', user).done(function(info){
+              getUserInfo(info.user);
+              console.log(info.user);
+              console.log(currentUser);
+            })
         });
 
-    });
+
+        function getUserInfo(id){
+        $("#currentUser").html("<h4>User Id:" + id + "<h4>")
+          let thisId = {
+            id: id
+          }
+          $.post('/api/getUser', thisId).done(function(info) {
+              console.log(info.info)
+              currentUser = info.info;
+          });
+        };
 
     $('#searchBtn').click(function () {
 

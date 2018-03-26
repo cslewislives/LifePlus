@@ -27,27 +27,28 @@ var login = {
       // ...
       console.log(errorMessage);
 
-    });
+    }).then(function(){
 
     firebase.auth().onAuthStateChanged(function (user) {
 
       if (user) {
+
+        var uid = user.uid;
         //greet the user
         // alert("Hey " + name + "Welcome to Life Plus!")
         console.log(user.uid);
-        
         //add user id, username, email to database
-        firebase.database().ref('users/' + user.uid).set({
+        firebase.database().ref('users/' + uid).set({
           username: name,
           email: email
         });
-        cb();
+          cb(uid);
         // User is signed in.
       } else {
         console.log("Database User Creation Unsuccessfull")
       }
     });
-
+    });
   },
 
   signIn: function (email, password, cb) {
@@ -65,13 +66,12 @@ var login = {
         if (user) {
           //greet the user
           // alert("Hey " + name + "Welcome to Life Plus!")
-
           console.log(user.uid + "is logged in");
-          cb(user)
+          // cb(user)
           //add user id, username, email to database
           var uid = user.uid;
+          cb(uid)
 
-          return uid;
           // User is signed in.
         } else {
           console.log("Login Unsuccessfull")
@@ -80,13 +80,23 @@ var login = {
 
     });
 
-    console.log(user);
-    console.log(uid);
-
-
   },
 
 
+getUserInfo: function(id, cb){
+  console.log("user model requested");
+  console.log(id);
+  var userRef = firebase.database().ref().child('users/' +id);
+  userRef.on('value', snap => {
+  var result =  snap.val();
+
+  console.log(result);
+
+    // console.log(data);
+    cb(result)
+  });
+
+},
 
 
 
