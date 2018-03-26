@@ -18,7 +18,7 @@ var app = auth.app;
 // ------------------ //
 var login = {
 
-  signUp: function (email, password, name) {
+  signUp: function (email, password, name, cb) {
 
     firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
       // Handle Errors here.
@@ -34,14 +34,14 @@ var login = {
       if (user) {
         //greet the user
         // alert("Hey " + name + "Welcome to Life Plus!")
-
         console.log(user.uid);
-
+        
         //add user id, username, email to database
         firebase.database().ref('users/' + user.uid).set({
           username: name,
           email: email
         });
+        cb();
         // User is signed in.
       } else {
         console.log("Database User Creation Unsuccessfull")
