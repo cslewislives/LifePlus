@@ -17,8 +17,9 @@ router.post('/api/signUpUser', (req, res) => {
     let password = req.body.password;
     let name = req.body.name;
 
-      login.signUp(email, password, name);
-      res.redirect('/search');
+      login.signUp(email, password, name, function(result) {
+        res.redirect('/search')
+      });
 
 });
 
@@ -71,6 +72,18 @@ router.post('/search/city', (req, res) => {
 
     search.costs(location, function (result) {
         console.log('got to costs');
+        res.json(result)
+    });
+})
+
+router.post('/search/job-description', (req, res) => {
+    let job = req.body.job,
+        location = req.body.location;
+
+    console.log('got here', req.body);
+
+    search.getCode(job, location, function (result) {
+        console.log('got to description');
         res.json(result)
     });
 })

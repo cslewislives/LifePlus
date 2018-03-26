@@ -137,7 +137,7 @@
     <script type="text/javascript" src="assets/js/mdbootstrap/popper.min.js"></script>
     <!-- Bootstrap core JavaScript -->
     <script type="text/javascript" src="assets/js/mdbootstrap/bootstrap.min.js"></script> {{!-- for auto complete --}}
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDHJqlNREO1QpaDF_ZwGt6M2CedgpZ4L7I&libraries=places&callback=init"
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDHJqlNREO1QpaDF_ZwGt6M2CedgpZ4L7I&libraries=places&callback=initialize"
         async defer></script>
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="assets/js/mdbootstrap/mdb.min.js"></script>
@@ -146,7 +146,7 @@
     <script>
         new WOW().init();
 
-        function init() {
+        function initialize() {
             var options = {
                 types: ['(cities)'],
                 componentRestrictions: { country: "us" }

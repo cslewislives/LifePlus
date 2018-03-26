@@ -13,20 +13,7 @@ $(document).ready(function () {
 
     console.log("hello");
 
-<<<<<<< HEAD
-    $("#signUp").click(
-        function () {
-            event.preventDefault();
-            console.log("sign up clicked");
-            let user = {
-                email: $('#orangeForm-email').val().trim(),
-                password: $('#orangeForm-pass').val().trim(),
-                name: $('#orangeForm-name').val().trim()
-            }
-            console.log(user);
-=======
-    $("#signUpBtn").click(
-    function() {
+    $("#signUpBtn").click(function () {
         event.preventDefault();
         console.log("sign up clicked");
         let user = {
@@ -35,57 +22,46 @@ $(document).ready(function () {
             name: $('#namesu').val().trim()
         }
         console.log(user);
->>>>>>> eea0a3b5732f1b76f50932ea2eb7e55260f3d055
 
-            $.post('/api/signUpUser', user).then(function () {
-                console.log(user.name + ' Added');
-            });
+        $.post('/api/signUpUser', user).then(function () {
+            console.log(user.name + ' Added');
         });
+    });
 
 
     $("#signInBtn").click(function () {
 
-<<<<<<< HEAD
         event.preventDefault();
         console.log("sign in clicked");
         let user = {
-            email: $('#orangeForm-email').val().trim(),
-            password: $('#orangeForm-pass').val().trim()
-=======
-      event.preventDefault();
-      console.log("sign in clicked");
-      let user = {
-          email: $('#emailsi').val().trim(),
-          password: $('#passwordsi').val().trim()
->>>>>>> eea0a3b5732f1b76f50932ea2eb7e55260f3d055
+            email: $('#emailsi').val().trim(),
+            password: $('#passwordsi').val().trim()
 
         }
         console.log(user);
 
-<<<<<<< HEAD
-        $.post('/api/signInUser', user).then(function () {
+        $.post('/api/signInUser', user).then(function (data) {
             console.log(user.email + 'sent to login');
+            console.log(data);
         });
-=======
-      $.post('/api/signInUser', user).then(function(data) {
-          console.log(user.email + 'sent to login');
-          console.log(data);
-      });
->>>>>>> eea0a3b5732f1b76f50932ea2eb7e55260f3d055
 
     });
 
-    $('#searchButton').click(function () {
+    $('#searchBtn').click(function () {
+
         event.preventDefault();
         console.log('Searching...');
+        $('#searchContent').toggleClass('d-block');
         let autocomplete = $('#orangeForm-city').val().trim()
         let location = autocomplete.replace(', USA', '');
+
         let newLife = {
             job: $('#orangeForm-job').val().trim(),
             location: location
         }
         console.log(newLife);
-        post('/search/job', '/search/city', newLife);
+
+        post('/search/job', '/search/city', '/search/job-description', newLife);
     });
 
     $('#saveBtn').click(function () {
@@ -95,28 +71,6 @@ $(document).ready(function () {
         let cityName = $("#cityName").text();
         let rent = $("#rent").text();
 
-<<<<<<< HEAD
-=======
-    $('#saveBtn').click(function(){
-      console.log("clicked");
-          let jobName = $("#jobName").text();
-          let salary = $("#salary").text();
-          let cityName = $("#cityName").text();
-          let rent = $("#rent").text();
-
-
-          let savedSearch = {
-                job: jobName,
-                location: cityName,
-                salary: salary,
-                rent: rent
-
-            }
-
-            console.log(savedSearch);
-            toastr["success"]("Search Saved!");
-            $.post('/api/savedSearches', savedSearch);
->>>>>>> eea0a3b5732f1b76f50932ea2eb7e55260f3d055
 
         let savedSearch = {
             job: jobName,
@@ -127,7 +81,9 @@ $(document).ready(function () {
         }
 
         console.log(savedSearch);
+        toastr["success"]("Search Saved!");
         $.post('/api/savedSearches', savedSearch);
+
 
     });
 
@@ -135,23 +91,102 @@ $(document).ready(function () {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
-    function post(url1, url2, data) {
-        let post1 = $.post(url1, data);
-        let post2 = $.post(url2, data);
+    function post(url1, url2, url3, data) {
+        let jobPost = $.post(url1, data);
+        let costsPost = $.post(url2, data);
+        let descriptionPost = $.post(url3, data);
 
-        $.when(post1, post2).done(function (res1, res2) {
+        $.when(jobPost, costsPost, descriptionPost).done(function (res1, res2, res3) {
             console.log(res1);
             console.log(res2);
+            console.log(res3);
             let salary = parseFloat(res1[0].average);
-            let rent = parseFloat(res2[0].average_price);
-            $('#job-title').text(capitalizeFirstLetter(data.job));
-            $('#location').text(data.location);
+            populateRent(res2[0]);
+            populateUtilities(res2[0]);
+            populateTransportation(res2[0]);
+            populateGroceries(res2[0]);
+            populateCareer(res3[0]);
+            $('#jobName').text(capitalizeFirstLetter(data.job));
+            $('#cityName').text(data.location);
             $('#salary').text(salary.formatMoney(0));
-            $('#rent').text(rent.formatMoney(0));
-            console.log(data.job + ' added');
+            console.log(data.job + ' added');;
         }).fail(function (err) {
             console.log('you fail');
             console.log(err);
         });
     }
+
+    function populateRent(data) {
+        let rentText = $('#rent-text');
+
+        let description = 'Average rent per month for: ';
+        rentText.html(description);
+
+        $('#rent').text(data[21].average_price.formatMoney(0));
+        data.forEach(element => {
+            let averageRent = element.average_price.formatMoney(0);
+            if (element.item_name.includes('Rent Per')) {
+                rentText.append('<li>' + element.item_name.replace(', Rent Per Month', '') + ': ' + averageRent + '</li>');
+            }
+        });
+    };
+
+    function populateUtilities(data) {
+        let utilText = $('#utilities');
+
+        let description = 'Average Utilites per month: ';
+        utilText.html(description);
+
+        data.forEach(element => {
+            let averagePay = element.average_price.formatMoney(0);
+            switch (element.item_name) {
+                case "Basic (Electricity, Heating, Cooling, Water, Garbage) for 85m2 Apartment, Utilities (Monthly)":
+                    utilText.append('<li>' + element.item_name.replace('for 85m2 Apartment, Utilities (Monthly)', '') + ': ' + averagePay + '</li>');
+                    break;
+
+                case "Internet (60 Mbps or More, Unlimited Data, Cable/ADSL), Utilities (Monthly)":
+                    utilText.append('<li>' + element.item_name.replace(', Utilities (Monthly)', '') + ': ' + averagePay + '</li>');
+                    break;
+
+            }
+        });
+    };
+
+    function populateTransportation(data) {
+        let transText = $('#transportation');
+
+        let description = 'Average Transportation costs per month: ';
+        transText.html(description);
+
+        data.forEach(element => {
+            let averageCost = element.average_price.formatMoney(0);
+            if (element.item_name.includes('Transportation')) {
+                transText.append('<li>' + element.item_name.replace(', Transportation', '') + ': ' + averageCost + '</li>');
+            }
+        });
+    };
+
+    function populateGroceries(data) {
+        let groceryText = $('#groceries');
+
+        let description = 'Average Costs for Groceries: ';
+        groceryText.html(description);
+
+        data.forEach(element => {
+            let averageCost = element.average_price.formatMoney(0);
+            if (element.item_name.includes('Markets')) {
+                groceryText.append('<li>' + element.item_name.replace(', Markets', '') + ': ' + averageCost + '</li>');
+            }
+        });
+    };
+
+    function populateCareer(data) {
+        let careerText = $('#career');
+        let mainTitle = $('<h4>');
+        mainTitle.html(data.Purpose.OnetTitle);
+        careerText.html(mainTitle);
+        careerText.append('<li>' + data.Purpose.OnetDesc + '</li>');
+        careerText.append('<br>' + data.Activity);
+    };
+
 });
