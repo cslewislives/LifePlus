@@ -13,7 +13,7 @@ firebase.initializeApp(config);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(express.static("app/public"));
+app.use(express.static("app/public/"));
 
 
 const routes = require('./app/controllers/routes/api-routes');

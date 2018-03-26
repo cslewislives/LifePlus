@@ -18,7 +18,7 @@ router.post('/api/signUpUser', (req, res) => {
     let name = req.body.name;
 
       login.signUp(email, password, name, function(result) {
-        res.redirect('/search')
+        res.json({status: "Success", redirect: '/search'});
       });
 
 });
@@ -29,11 +29,10 @@ router.post('/api/signInUser', (req, res) => {
     let password = req.body.password;
     let name = req.body.name;
 
-    login.signIn(email, password, function(cb){
-        res.render("/userInfo")
+    login.signIn(email, password, function(response){
+        
+        res.json({status: "Success", redirect: '/user-info'});
     });
-
-
 });
 
 

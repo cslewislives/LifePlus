@@ -23,8 +23,12 @@ $(document).ready(function () {
         }
         console.log(user);
 
-        $.post('/api/signUpUser', user).then(function () {
+        $.post('/api/signUpUser', user).then(function (data) {
             console.log(user.name + ' Added');
+            console.log(data);
+            if (data.status === "Success") {
+                window.location = data.redirect;
+            }
         });
     });
 
@@ -43,6 +47,7 @@ $(document).ready(function () {
         $.post('/api/signInUser', user).then(function (data) {
             console.log(user.email + 'sent to login');
             console.log(data);
+            window.location = data.redirect;
         });
 
     });
