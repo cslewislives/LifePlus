@@ -41,7 +41,7 @@ var login = {
           username: name,
           email: email
         });
-        cb();
+        cb(user.uid);
         // User is signed in.
       } else {
         console.log("Database User Creation Unsuccessfull")
@@ -67,11 +67,11 @@ var login = {
           // alert("Hey " + name + "Welcome to Life Plus!")
 
           console.log(user.uid + "is logged in");
-          cb(user)
           //add user id, username, email to database
           var uid = user.uid;
-
-          return uid;
+          
+          cb(uid)
+          // return uid;
           // User is signed in.
         } else {
           console.log("Login Unsuccessfull")
@@ -79,10 +79,6 @@ var login = {
       });
 
     });
-
-    console.log(user);
-    console.log(uid);
-
 
   },
 
