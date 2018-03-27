@@ -104,9 +104,35 @@ router.post('/search/job-description', (req, res) => {
     });
 })
 
-router.get('/user-info', (req, res) => {
-    res.render('userInfo');
-});
+
+
+  // router.post('/userInfo', function (req, res, next) {
+  //
+  //   let id = req.body.id
+  //   login.getUserInfo(id, function(data){
+  //
+  //     let dataobj = {
+  //       savedSearches: data
+  //     }
+  //       next();
+  //     });
+  //
+  //   });
+
+  router.get('/userInfo/:id', function(req, res) {
+    let id = req.params.id
+    login.getUserInfo(id, function(data){
+
+      let dataObj = {
+        savedSearches: data
+      }
+        res.render('userInfo', dataObj);
+      });
+
+    });
+
+
+
 
 
 module.exports = router;

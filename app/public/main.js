@@ -31,7 +31,6 @@ $(document).ready(function () {
     });
 
 
-
     Number.prototype.formatMoney = function (c, d, t) {
         var n = this,
             c = isNaN(c = Math.abs(c)) ? 2 : c,
@@ -146,9 +145,21 @@ $(document).ready(function () {
         $.post('/api/savedSearches', savedSearch).done(function(data){
           console.log(data)
         });
-
-
     });
+
+
+$("#accountBtn").click(function(){
+    event.preventDefault();
+    let id = $("#currentUser").text();
+
+    // let idObj = {
+    //   id: id
+    // }
+
+    $.get('/userInfo/' + id).done(
+      window.location.replace('/userInfo/' + id)
+    );
+});
 
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
