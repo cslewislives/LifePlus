@@ -28,12 +28,15 @@ var currentUsr = function(id, username, email, savedSearches){
         }
         console.log(user);
 
+
         $.post('/api/signUpUser', user).done(function(data) {
             console.log(user.name + ' Added');
             console.log("User Id: " + data.user);
             getUserInfo(data.user);
+
         });
     });
+
 
 
 
@@ -50,6 +53,7 @@ var currentUsr = function(id, username, email, savedSearches){
               console.log(info.user);
               console.log(currentUser);
             })
+
         });
 
 

@@ -42,7 +42,9 @@ var login = {
           username: name,
           email: email
         });
+
           cb(uid);
+
         // User is signed in.
       } else {
         console.log("Database User Creation Unsuccessfull")
@@ -67,10 +69,12 @@ var login = {
           //greet the user
           // alert("Hey " + name + "Welcome to Life Plus!")
           console.log(user.uid + "is logged in");
+
           // cb(user)
           //add user id, username, email to database
           var uid = user.uid;
           cb(uid)
+
 
           // User is signed in.
         } else {
@@ -83,6 +87,7 @@ var login = {
   },
 
 
+
 getUserInfo: function(id, cb){
   console.log("user model requested");
   console.log(id);
@@ -91,6 +96,7 @@ getUserInfo: function(id, cb){
   var result =  snap.val();
 
   console.log(result);
+
 
     // console.log(data);
     cb(result)

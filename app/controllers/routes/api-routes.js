@@ -16,9 +16,11 @@ router.post('/api/signUpUser', (req, res, next) => {
     let email = req.body.email;
     let password = req.body.password;
     let name = req.body.name;
+
       login.signUp(email, password, name, function(uid) {
         console.log(uid);
         res.json({user: uid});
+
       });
 
 });
@@ -28,11 +30,13 @@ router.post('/api/signInUser', (req, res, next) => {
     let password = req.body.password;
     let name = req.body.name;
 
+
     login.signIn(email, password, function(uid){
       //let thisUser = login.getUser();
       console.log(uid);
 
       res.json({user: uid});
+
     });
 });
 
