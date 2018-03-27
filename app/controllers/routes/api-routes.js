@@ -12,30 +12,42 @@ router.get("/", function (req, res) {
     res.render("index");
 });
 
-router.post('/api/signUpUser', (req, res) => {
+router.post('/api/signUpUser', (req, res, next) => {
     let email = req.body.email;
     let password = req.body.password;
     let name = req.body.name;
 
-      login.signUp(email, password, name, function(result) {
-        res.json({status: "Success", redirect: '/search'});
+      login.signUp(email, password, name, function(uid) {
+        console.log(uid);
+        res.json({user: uid});
+
       });
 
 });
 
-
-router.post('/api/signInUser', (req, res) => {
+router.post('/api/signInUser', (req, res, next) => {
     let email = req.body.email;
     let password = req.body.password;
     let name = req.body.name;
 
-    login.signIn(email, password, function(response){
-        
-        res.json({status: "Success", redirect: '/user-info'});
+
+    login.signIn(email, password, function(uid){
+      //let thisUser = login.getUser();
+      console.log(uid);
+
+      res.json({user: uid});
+
     });
 });
 
+router.post('/api/getUser', (req, res, next) => {
+  let id =  req.body.id;
+  console.log("user info requested for" + id);
+  login.getUserInfo(id, function(info){
+    res.json({info});
+  });
 
+});
 
 router.get('/search', (req, res) => {
     res.render('search');
