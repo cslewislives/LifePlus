@@ -1,9 +1,8 @@
 $(document).ready(function () {
 
-var currentUsr = function(id, username, email, savedSearches){
+    var currentUsr = function (id, username, email, savedSearches) {
 
-}
-
+    }
 
     Number.prototype.formatMoney = function (c, d, t) {
         var n = this,
@@ -29,7 +28,7 @@ var currentUsr = function(id, username, email, savedSearches){
         console.log(user);
 
 
-        $.post('/api/signUpUser', user).done(function(data) {
+        $.post('/api/signUpUser', user).done(function (data) {
             console.log(user.name + ' Added');
             console.log("User Id: " + data.user);
             getUserInfo(data.user);
@@ -37,52 +36,55 @@ var currentUsr = function(id, username, email, savedSearches){
         });
     });
 
-
-
-
     $("#signInBtn").click(function () {
-            event.preventDefault();
-            console.log("sign in clicked");
-            let user = {
-                email: $('#emailsi').val().trim(),
-                password: $('#passwordsi').val().trim()
-                }
+        event.preventDefault();
+        console.log("sign in clicked");
+        let user = {
+            email: $('#emailsi').val().trim(),
+            password: $('#passwordsi').val().trim()
+        }
 
-            $.post('/api/signInUser', user).done(function(info){
-              getUserInfo(info.user);
-              console.log(info.user);
-              console.log(currentUser);
-            })
+        $.post('/api/signInUser', user).done(function (info) {
+            getUserInfo(info.user);
+            console.log(info.user);
+            console.log(currentUser);
+        })
 
-        });
+    });
 
 
-        function getUserInfo(id){
+    function getUserInfo(id) {
         $("#currentUser").html("<h4>User Id:" + id + "<h4>")
-          let thisId = {
+        let thisId = {
             id: id
-          }
-          $.post('/api/getUser', thisId).done(function(info) {
-              console.log(info.info)
-              currentUser = info.info;
-          });
-        };
+        }
+        $.post('/api/getUser', thisId).done(function (info) {
+            console.log(info.info)
+            currentUser = info.info;
+        });
+    };
 
     $('#searchBtn').click(function () {
 
         event.preventDefault();
         console.log('Searching...');
-        $('#searchContent').toggleClass('d-block');
         let autocomplete = $('#orangeForm-city').val().trim()
         let location = autocomplete.replace(', USA', '');
-
+        let job = $('#orangeForm-job').val().trim();
         let newLife = {
-            job: $('#orangeForm-job').val().trim(),
+            job: job,
             location: location
         }
         console.log(newLife);
 
-        post('/search/job', '/search/city', '/search/job-description', newLife);
+        if (job === '' || location === '') {
+            alert('Please fill in both items');
+        } else {
+            if (!$('#searchContent').hasClass('d-block')) {
+                $('#searchContent').toggleClass('d-block');
+            }
+            post('/search/job', '/search/city', '/search/job-description', newLife);
+        }
     });
 
     $('#saveBtn').click(function () {
