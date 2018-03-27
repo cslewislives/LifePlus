@@ -16,10 +16,14 @@ router.post('/api/signUpUser', (req, res, next) => {
     let email = req.body.email;
     let password = req.body.password;
     let name = req.body.name;
-      login.signUp(email, password, name, function(uid) {
+
+    login.signUp(email, password, name, function (uid) {
         console.log(uid);
-        res.json({user: uid});
-      });
+        res.json({
+            user: uid
+        });
+
+    });
 
 });
 

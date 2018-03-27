@@ -69,10 +69,12 @@ var login = {
           //greet the user
           // alert("Hey " + name + "Welcome to Life Plus!")
           console.log(user.uid + "is logged in");
+
           // cb(user)
           //add user id, username, email to database
           var uid = user.uid;
           cb(uid)
+
 
           // User is signed in.
         } else {
@@ -83,6 +85,7 @@ var login = {
     });
 
   },
+
 
 
 getUserInfo: function(id, cb){

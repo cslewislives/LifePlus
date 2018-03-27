@@ -31,6 +31,7 @@ $(document).ready(function () {
     });
 
 
+
     Number.prototype.formatMoney = function (c, d, t) {
         var n = this,
             c = isNaN(c = Math.abs(c)) ? 2 : c,
@@ -62,6 +63,7 @@ $(document).ready(function () {
         });
 
     });
+
 
 
     $("#signInBtn").click(function () {
@@ -104,17 +106,23 @@ $(document).ready(function () {
 
         event.preventDefault();
         console.log('Searching...');
-        $('#searchContent').toggleClass('d-block');
         let autocomplete = $('#orangeForm-city').val().trim()
         let location = autocomplete.replace(', USA', '');
-
+        let job = $('#orangeForm-job').val().trim();
         let newLife = {
-            job: $('#orangeForm-job').val().trim(),
+            job: job,
             location: location
         }
         console.log(newLife);
 
-        post('/search/job', '/search/city', '/search/job-description', newLife);
+        if (job === '' || location === '') {
+            alert('Please fill in both items');
+        } else {
+            if (!$('#searchContent').hasClass('d-block')) {
+                $('#searchContent').toggleClass('d-block');
+            }
+            post('/search/job', '/search/city', '/search/job-description', newLife);
+        }
     });
 
     $('#saveBtn').click(function () {
