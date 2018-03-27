@@ -122,9 +122,9 @@ router.post('/search/job-description', (req, res) => {
   router.get('/userInfo/:id', function(req, res) {
     let id = req.params.id
     login.getUserInfo(id, function(data){
-
+        console.log('return data: ', data.savedSearches);
       let dataObj = {
-        savedSearches: data
+        savedSearches: data.savedSearches
       }
         res.render('userInfo', dataObj);
       });

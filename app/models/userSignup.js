@@ -95,7 +95,7 @@ getUserInfo: function(id, cb){
   userRef.once('value', snap => {
   var result =  snap.val();
 
-  console.log(result);
+  // console.log(result);
     // console.log(data);
   cb(result)
   });

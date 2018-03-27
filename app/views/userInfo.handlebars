@@ -1,11 +1,11 @@
 <!--Main Navigation-->
 <header>
-<a id ="anchor" value = 1></a>
-<a id="anchor2" value = 2></a>
+    <a id="anchor" value=1></a>
+    <a id="anchor2" value=2></a>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
         <div class="container">
             <a class="navbar-brand" href="/search">
-                <img src="assets/css/images/logo.png" height="40" class="d-inline-block align-top" alt="">
+                <img src="/assets/css/images/logo.png" height="40" class="d-inline-block align-top" alt="">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-7" aria-controls="navbarSupportedContent-7"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -66,12 +66,46 @@
         <section>
 
             <!-- Tab panels -->
-            <div class="tab-content row">
+            <div class="tab-content">
+                <!--Panel 1-->
+                <div class="tab-pane fade  show active" id="panel11" role="tabpanel">
+                    <br>
 
-                {{#each savedSearch}} {{> savedsearches}} {{/each}}
+                    <!--Grid row-->
+                    <div class="row">
+
+                        <!--Grid column-->
+                        <div class="col-md-12">
+
+                            <!--Projects section v.4-->
+                            <section class=" mb-5">
+
+                                <!--Grid row-->
+                                <div class="row mb-4">
+                                    {{#each savedSearches}} {{> search/savedSearch}} {{/each}}
+
+                                </div>
+                        </div>
+                        <!--Grid column-->
+
+                    </div>
+                    <!--Grid row-->
+
+                    </section>
+                    <!--Projects section v.4-->
+
+                </div>
+                <!--Grid column-->
+
             </div>
-        </section>
-        <!--Section: Tabs-->
+            <!--Grid row-->
+
+    </div>
+    <!--/.Panel 1-->
+
+    </div>
+    </section>
+    <!--Section: Tabs-->
     </div>
 </main>
 <!--Main Navigation-->
