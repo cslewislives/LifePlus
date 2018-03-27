@@ -26,12 +26,10 @@ router.post('/api/signUpUser', (req, res, next) => {
 router.post('/api/signInUser', (req, res, next) => {
     let email = req.body.email;
     let password = req.body.password;
-    let name = req.body.name;
 
     login.signIn(email, password, function(uid){
       //let thisUser = login.getUser();
       console.log(uid);
-
       res.json({user: uid});
     });
 });
@@ -40,7 +38,7 @@ router.post('/api/getUser', (req, res, next) => {
   let id =  req.body.id;
   console.log("user info requested for" + id);
   login.getUserInfo(id, function(info){
-    res.json({info});
+    res.json(info);
   });
 
 });
@@ -49,14 +47,19 @@ router.get('/search', (req, res) => {
     res.render('search');
 });
 
-router.post('/api/savedSearches', (req, res) => {
+router.post('/api/savedSearches', (req, res, next) => {
     let job = req.body.job,
      location = req.body.location,
      salary = req.body.salary,
-     rent = req.body.rent;
+     rent = req.body.rent,
+     id = req.body.id;
 
-     console.log(job + location + salary + rent + " sent to api routes");
-     saveSearch.savethis(job, location, salary, rent);
+     console.log(job + location + salary + rent + id +" sent to api routes");
+     saveSearch.savethis(job, location, salary, rent, id, function(info){
+       res.json(info);
+     });
+
+
 
 });
 

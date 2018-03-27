@@ -130,9 +130,7 @@
 
     <!--Main Navigation-->
 
-<div id="currentUser">
 
-</div>
     <!--  SCRIPTS  -->
     <!-- JQuery -->
     <script type="text/javascript" src="assets/js/mdbootstrap/jquery-3.2.1.min.js"></script>
@@ -144,7 +142,13 @@
         async defer></script>
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="assets/js/mdbootstrap/mdb.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-database.js"></script>
     <script type="text/javascript" src="main.js"></script>
+    {{!-- <script type="text/javascript" src="signin.js"</script> --}}
+
 
     <script>
         new WOW().init();
@@ -157,6 +161,7 @@
             var input = document.getElementById('orangeForm-city');
             var autocomplete = new google.maps.places.Autocomplete(input, options);
         }
+
     </script>
 </body>
 

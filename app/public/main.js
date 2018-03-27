@@ -1,8 +1,34 @@
 $(document).ready(function () {
 
-var currentUsr = function(id, username, email, savedSearches){
 
-}
+  var anchor = $("#anchor").attr("value");
+
+  var config = {
+      apiKey: "AIzaSyAsIRODKOn0XwK9WoN5jOtDYJ9P5hcW0eY",
+      authDomain: "test-4cce2.firebaseapp.com",
+      databaseURL: "https://test-4cce2.firebaseio.com",
+      projectId: "test-4cce2",
+      storageBucket: "test-4cce2.appspot.com",
+    };
+
+    firebase.initializeApp(config);
+
+    //checks if a user is logged in
+    //if user is already logged in, and they are on root page, redirects to search//
+    //appends user id to the menu
+
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        $("#currentUser").text(user.uid);
+        console.log(user.uid);
+        getUserInfo(user.uid);
+      } else {
+        $("#currentUser").text("please log in");
+      }
+      if(user && anchor !== "1"){
+        window.location.href = "/search"
+      }
+    });
 
 
     Number.prototype.formatMoney = function (c, d, t) {
@@ -28,13 +54,14 @@ var currentUsr = function(id, username, email, savedSearches){
         }
         console.log(user);
 
-        $.post('/api/signUpUser', user).done(function(data) {
+        $.post('/api/signUpUser', user).then(function(data) {
             console.log(user.name + ' Added');
             console.log("User Id: " + data.user);
-            getUserInfo(data.user);
-        });
-    });
 
+            signInUser(user.email, user.password);
+        });
+
+    });
 
 
     $("#signInBtn").click(function () {
@@ -42,25 +69,34 @@ var currentUsr = function(id, username, email, savedSearches){
             console.log("sign in clicked");
             let user = {
                 email: $('#emailsi').val().trim(),
-                password: $('#passwordsi').val().trim()
-                }
+                password: $('#passwordsi').val().trim(),
+            }
+            console.log(user);
+            signInUser(user.email, user.password);
 
             $.post('/api/signInUser', user).done(function(info){
               getUserInfo(info.user);
               console.log(info.user);
-              console.log(currentUser);
+
             })
         });
 
+      $(".logout").click(function(){
+        firebase.auth().signOut().then(function() {
+          console.log('Signed Out');
+        }, function(error) {
+          console.error('Sign Out Error', error);
+          });
+      })
 
         function getUserInfo(id){
-        $("#currentUser").html("<h4>User Id:" + id + "<h4>")
+
           let thisId = {
             id: id
           }
           $.post('/api/getUser', thisId).done(function(info) {
-              console.log(info.info)
-              currentUser = info.info;
+              console.log(info)
+
           });
         };
 
@@ -87,19 +123,21 @@ var currentUsr = function(id, username, email, savedSearches){
         let salary = $("#salary").text();
         let cityName = $("#cityName").text();
         let rent = $("#rent").text();
-
+        let id = $("#currentUser").text();
 
         let savedSearch = {
+            id: id,
             job: jobName,
             location: cityName,
             salary: salary,
             rent: rent
 
         }
-
         console.log(savedSearch);
         toastr["success"]("Search Saved!");
-        $.post('/api/savedSearches', savedSearch);
+        $.post('/api/savedSearches', savedSearch).done(function(data){
+          console.log(data)
+        });
 
 
     });
@@ -206,4 +244,33 @@ var currentUsr = function(id, username, email, savedSearches){
         careerText.append('<br>' + data.Activity);
     };
 
+    function signInUser(email, password){
+        //Takes Name and Email from DOM
+        firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          console.log(errorMessage);
+          // ...
+        }).then(function(){
+          firebase.auth().onAuthStateChanged(function (user) {
+
+            if (user) {
+              //greet the user
+              // alert("Hey " + name + "Welcome to Life Plus!")
+              console.log(user.uid + "is logged in");
+              // cb(user)
+              //add user id, username, email to database
+              var uid = user.uid;
+              window.location.href = "/search"
+              // User is s  igned in.
+            } else {
+              console.log("Login Unsuccessfull")
+            }
+          });
+
+
+
+      });
+    }
 });
